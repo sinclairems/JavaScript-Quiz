@@ -1,0 +1,233 @@
+This is a place for notes. I'm trying to make this timer work on my quiz app. 
+
+I believe in order to make this timer work, I only need a few more lines of code. 
+It needs to be incorporated into the current code.
+But since idk wtf I'm doing in JS yet, it is very hard to figure out. 
+
+What I think I should do is look at all of my function names. 
+
+Then I think I should build a very simple, working timer. 
+Then I need to work it into my code. 
+So ...
+
+Here are a list of current functions, and approximately, what they do.
+
+startQuiz()
+showQuestion()
+resetQuiz()
+selectAnswer(e)
+showScore()
+goToNextQuestion()
+
+I need a startTimer() function
+It needs to correspond to goToNextQuestion()
+
+The startTimer() function can be called at the same time I call startQuiz()
+Then there is an event listener (clicking the Next button) that resets the timer
+IF timer runs out before Next is clicked, the answer is marked incorrect (score - 1)
+IF the timer does not run out AND the correct answer is selected, the answer is marked correct (score++)
+
+In the index, the timer is associated with all of the following classes:
+.timer
+.progress
+.progress-bar
+.progress-text
+
+.timer is the parent of .progress
+.progress is the parent of .progress-bar
+.progress-bar is the parent of .progress-text
+
+Let me make 2 cases:
+1 where the timer starts on startQuiz
+1 where the timer starts on goToNextQuestion
+
+
+FROM BARD
+Here's a guide to incorporating a timer into your JavaScript-based quiz:
+1. Update HTML:
+Add an element to display the timer:
+HTML
+<div id="timer">Time Remaining: <span id="time-left"></span></div>
+
+
+2. Write JavaScript code:
+Initialize variables:
+JavaScript
+let timeLeft = 60; // Set initial time in seconds
+let timerInterval;
+
+
+Create a countdown function:
+JavaScript
+function countdown() {
+    document.getElementById("time-left").textContent = timeLeft;
+    timeLeft--;
+
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval); // Stop the timer
+        // Handle time-out actions (e.g., submit answers, display results)
+    }
+}
+
+
+Start the timer:
+JavaScript
+timerInterval = setInterval(countdown, 1000); // Update every 1 second
+
+
+Stop the timer when appropriate:
+JavaScript
+// When user submits answers or quiz ends:
+clearInterval(timerInterval);
+
+
+3. Integrate with your quiz logic:
+Start the timer when the quiz begins:
+JavaScript
+function startQuiz() {
+    // ... other quiz setup logic
+    startTimer();
+}
+
+
+Stop the timer when the quiz ends or upon answer submission:
+JavaScript
+function submitAnswer() {
+    // ... check answers
+    clearInterval(timerInterval);
+    // ... display results
+}
+
+
+FROM COPILOT
+
+//Check if selected answer is correct and display Next button
+function selectAnswer(e) {  
+    const selectedBtn = e.target;
+    const correct = selectedBtn.dataset.correct === "true";
+    startTimer(); // Start the timer when an answer is selected
+
+    if (correct) {
+        selectedBtn.classList.add("correct");
+        score++;
+    } else {
+        selectedBtn.classList.add("incorrect");
+    }
+
+    Array.from(answerBtn.children).forEach(button => {
+        if (button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+
+    nextBtn.style.display = "block";
+}
+
+// Timer
+function startTimer() {
+    let timeLeft = 10;
+    let timer = setInterval(function() {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            markAsIncorrect(); // Mark the question as incorrect when time runs out
+            showCorrectAnswer(); // Show the correct answer when time runs out
+            nextBtn.style.display = "block"; // Show the Next button when time runs out
+        }
+        document.getElementsByClassName("timer")[0].innerHTML = timeLeft;
+        timeLeft -= 1;
+    }, 1000);
+}
+
+// Mark the current question as incorrect
+function markAsIncorrect() {
+    // Your code to mark the question as incorrect goes here
+}
+
+// Show the correct answer for the current question
+function showCorrectAnswer() {
+    // Your code to show the correct answer goes here
+}
+
+The `markAsIncorrect` function should mark the current question as incorrect. This could involve changing the styling of the question or answer to indicate that it's incorrect, and updating the score or other variables as needed. However, without knowing the exact structure of your HTML and how you're displaying the questions and answers, it's difficult to provide a precise implementation.
+
+Here's a general example of what the `markAsIncorrect` function could look like:
+
+```javascript
+function markAsIncorrect() {
+    // Assuming each question is a div with class "question"
+    let currentQuestionDiv = document.getElementsByClassName("question")[currentQuestionIndex];
+
+    // Add "incorrect" class to current question div
+    currentQuestionDiv.classList.add("incorrect");
+
+    // Update score or other variables as needed
+    // ...
+}
+```
+
+This code assumes that each question is contained in a div with the class "question", and that you have a CSS class "incorrect" that changes the styling of a question to indicate that it's incorrect. You'll need to adjust this code to fit your actual HTML structure and CSS classes.
+
+The `markAsCorrect` function should mark the current question as correct. This could involve changing the styling of the question or answer to indicate that it's correct, and updating the score or other variables as needed. However, without knowing the exact structure of your HTML and how you're displaying the questions and answers, it's difficult to provide a precise implementation.
+
+Here's a general example of what the `markAsCorrect` function could look like:
+
+```javascript
+function markAsCorrect() {
+    // Assuming each question is a div with class "question"
+    let currentQuestionDiv = document.getElementsByClassName("question")[currentQuestionIndex];
+
+    // Add "correct" class to current question div
+    currentQuestionDiv.classList.add("correct");
+
+    // Update score or other variables as needed
+    // ...
+}
+```
+
+This code assumes that each question is contained in a div with the class "question", and that you have a CSS class "correct" that changes the styling of a question to indicate that it's correct. You'll need to adjust this code to fit your actual HTML structure and CSS classes.
+
+To dynamically update the score on the webpage, you need to have an HTML element where the score will be displayed. You can then create a function to update this element whenever the score changes.
+
+First, add an HTML element for the score. It could be a simple paragraph or span:
+
+```html
+<p id="score">Score: 0</p>
+```
+
+Then, in your JavaScript, create a function to update the score:
+
+```javascript
+function updateScore() {
+    // Get the score element
+    let scoreElement = document.getElementById("score");
+
+    // Update the score element
+    scoreElement.innerHTML = "Score: " + score;
+}
+```
+
+Finally, call `updateScore` in your `markAsCorrect` and `markAsIncorrect` functions:
+
+```javascript
+function markAsCorrect() {
+    // ... your existing code ...
+
+    // Increase the score
+    score++;
+
+    // Update the score on the webpage
+    updateScore();
+}
+
+function markAsIncorrect() {
+    // ... your existing code ...
+
+    // Decrease the score or do whatever you want when the answer is incorrect
+
+    // Update the score on the webpage
+    updateScore();
+}
+```
+
+This will update the score on the webpage every time a question is marked as correct or incorrect.

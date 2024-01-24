@@ -1,7 +1,3 @@
-// TO DO: Create a timer function that gives 10 seconds for each question. 
-// If the user does not answer the question in time, they get it wrong and move to the next question. (-1 on their score)
-// TO DO: Create a function that stores the user's initials and score in local storage.
-
 // Questions and Answers
 const questions = [
     {
@@ -59,9 +55,11 @@ const questions = [
 const questionEl = document.getElementById("question");
 const answerBtn = document.getElementById("answer-btns");
 const nextBtn = document.getElementById("next-btn");
+const highScore = document.getElementById("score");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timer;
 
 // Start Quiz 
 function startQuiz() {
@@ -70,6 +68,19 @@ function startQuiz() {
     nextBtn.innerHTML = "Next";
     showQuestion();
 }
+
+/* Timer */
+function startTimer() {
+    let timeLeft = 10;
+    let timer = setInterval(function() {
+        if (timeLeft <= 0 || nextBtn.style.display === "block") {
+            clearInterval(timer);
+        }
+        document.getElementById("timer").innerHTML = timeLeft;
+        timeLeft -= 1;
+    }, 1000);
+}
+
 
 // Show JS questions and answers
 function showQuestion() {
@@ -100,7 +111,7 @@ function resetQuiz() {
 }
 
 // Check if selected answer is correct and display Next button
-function selectAnswer(e) {
+function selectAnswer(e) {  
     const selectedBtn = e.target;
     const correct = selectedBtn.dataset.correct === "true";
     if (correct) {
@@ -116,6 +127,7 @@ function selectAnswer(e) {
         button.disabled = true;
     });
     nextBtn.style.display = "block";
+    //clearInterval(timer);
 }
 
 // Display score at end of quiz
@@ -124,10 +136,17 @@ function showScore() {
     questionEl.innerHTML = `You scored ${score} out of ${questions.length}!`;
         nextBtn.innerHTML = "Restart";
         nextBtn.style.display = "block";
+    hideTimer();
+}
+
+// Hide timer at end of quiz
+function hideTimer() {
+    document.getElementById("timer").style.display = "none";  
 }
 
 // Cycle through questions
 function goToNextQuestion() {
+    startTimer();
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
@@ -145,6 +164,7 @@ nextBtn.addEventListener("click", () => {
     }
 });
 
+addEventListener("load", startTimer)
 startQuiz();
 
 

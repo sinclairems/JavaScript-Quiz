@@ -1,34 +1,27 @@
 # JavaScript-Quiz
 A short, fun quiz made with JavaScript
 
-## Your Task
+## Description
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
+This quiz kicked my butt. I focused too much on the styling and not enough on the JavaScript, so there are some bugs! 
+The JavaScript cycles nicely through the questions. There is a timer. And the score is shown at the end of the quiz. However, the quiz does not deduct points for running out of time (although my grader for this assignment will!), nor does it allow the user to insert and store their initials in local storage. If I had a chance to do this assignment over, I would focus first on the basics: complete assignment requirements. After that, I would use spare time to make it pretty. 
 
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+In this assignment, I really saw how easy it is to get lost in your own code! I tried to go back and add the timer function, but I couldn't remember how the logic applied. I spent a long time working, and reworking, and messing things up, but it was a good learning experience. 
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+Here is a link to the site: https://sinclairems.github.io/JavaScript-Quiz/
 
-## User Story
+Here's what it will look like on the desktop:
 
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+![screeshot](/assets/images/screenshot1.png)
 
-## Acceptance Criteria
+## Credits
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
+-I used class notes and MDN.
+
+-I watched this tutorial that helped me style and get the basic quiz functioning. 
+
+-I used my GitHub CoPilot to help me towards the end. 
+
+## License
+
+See License file for details.
