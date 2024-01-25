@@ -18,7 +18,7 @@ Here's what it will look like on the desktop:
 
 -I used class notes and MDN.
 
--I watched this tutorial that helped me style and get the basic quiz functioning. 
+-I watched this tutorial that helped me style and get the basic quiz functioning: https://www.youtube.com/watch?v=PBcqGxrr9g8. 
 
 -I used my GitHub CoPilot to help me towards the end. 
 
