@@ -12,23 +12,37 @@
 
 <body>
 
-<!--TO DO: Add div to top left of page for timer
-Need to add a box to the score page where user can insert initials and see their high score.-->
-
+    <header>
+        <a href="highscore.html">
+        <button class="high-score" id="high-score">View High Scores</button>
+        </a>    
+    </header>
 
     <div class="container">
-        <h1>Quiz</h1>
-        <div class="quiz">
-            <h2 id="question">Question goes here</h2>
-            <div id="answer-btns">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-                <button class="btn">Answer 5</button>
+        <h1>Do You Know?</h1>
+
+            <div class="quiz">
+            <div id="timer"><span id="time-left">10</span></div>
+                <h2 id="question">Question goes here</h2>
+                    <div id="answer-btns">
+                        <button class="btn">Answer 1</button>
+                        <button class="btn">Answer 2</button>
+                        <button class="btn">Answer 3</button>
+                        <button class="btn">Answer 4</button>
+                        <button class="btn">Answer 5</button>
+                    </div>
+                <button id="next-btn">Next</button>
             </div>
-            <button id="next-btn">Next</button>
-        </div>
+
+        <!--This Code is Unfinished 😭-->    
+            <div class="hide" id="score">
+                <h2>Score</h2>
+                <h3>Correct: <span id="correct"></span></h3>
+                <h3>Incorrect: <span id="incorrect"></span></h3>
+                <h3>Enter your initials:</h3>
+                <input type="text" id="initials" placeholder="Enter your initials here">
+                <button id="submit-btn">Submit</button>
+            </div>
     </div>
 
     <script src="assets/scripts.js"></script>
