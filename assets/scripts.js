@@ -31,3 +31,42 @@ const questions = [
     },
 ];
 
+let currentQuestionIndex = 0;
+let timeLeft = 60;
+let timerInterval;
+
+// Get references to the HTML elements 
+const startButton = document.getElementById("startButton");
+const questionText = document.getElementById("questionText");
+const choicesList = document.getElementById("choices");
+const timeLeftElement = document.getElementById("timeLeft"); // Timer display
+const startScreen = document.getElementById("startScreen"); // Initial screen
+const questionScreen = document.getElementById("questionScreen"); // Question display
+const endScreen = document.getElementById("endScreen"); // Final screen
+const finalScoreElement = document.getElementById("finalScore"); // Score display
+const initialsInput = document.getElementById("initials"); // Initials input
+const submitScoreButton = document.getElementById("submitScore"); // Submit button
+
+// Event Listeners
+startButton.addEventListener("click", startQuiz);
+submitScoreButton.addEventListener("click", submitScore); // Add this for score submission
+
+// Quiz Functions
+function startQuiz() {
+  startScreen.style.display = "none";
+  questionScreen.style.display = "block";
+  showQuestion();
+  startTimer();
+}
+
+function showQuestion() {
+  // ... display current question and choices
+}
+
+function checkAnswer(selectedAnswer) {
+  // ... check if answer is correct, deduct time if wrong
+}
+
+function endQuiz() {
+  // ... show endScreen, stop timer, display score
+}
