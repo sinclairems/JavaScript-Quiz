@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+}
+header {
+  text-align: center;
+}
+#timer {
+  font-size: 1.2em;
+}
+#questionScreen, #endScreen {
+  text-align: center;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
