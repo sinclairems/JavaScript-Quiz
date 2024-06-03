@@ -40,6 +40,7 @@ let score = 0;
 const startButton = document.getElementById("startButton");
 const questionText = document.getElementById("questionText");
 const choicesList = document.getElementById("choices");
+const answer = document.getElementById("answer");
 const timeLeftElement = document.getElementById("timeLeft"); // Timer display
 const startScreen = document.getElementById("startScreen"); // Initial screen
 const questionScreen = document.getElementById("questionScreen"); // Question display
@@ -77,29 +78,26 @@ function showQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
 
-  const choices = currentQuestion.choices;
+  const choices = [...currentQuestion.choices]; // Create a copy of choices array
   const answerIndex = choices.indexOf(currentQuestion.answer);
 
-  // Shuffle choices
+  // Shuffle choices to randomize order
   choices.sort(() => Math.random() - 0.5);
 
   const choiceButtons = document.querySelectorAll(".choice-btn");
   choiceButtons.forEach((button, index) => {
     button.textContent = choices[index];
-    button.onclick = () => checkAnswer(choices[index], answerIndex === index);
+    button.onclick = () => checkAnswer(choices[index], index === answerIndex); // Fixed check for correct answer
   });
 }
 
-
-function checkAnswer(selectedAnswer) {
-  const currentQuestion = questions[currentQuestionIndex];
-
-  if (selectedAnswer === currentQuestion.answer) {
-    // Correct answer
+function checkAnswer(selectedAnswer, isCorrect) {
+  if (isCorrect) {
+    score += 10;
   } else {
-    // Incorrect answer
-    timeLeft -= 10; // Subtract time 
-    if (timeLeft < 0) timeLeft = 0; // Prevent negative time
+    score -= 10;
+    timeLeft -= 10; // Subtract time for incorrect answer
+    if (timeLeft < 0) timeLeft = 0;
     timeLeftElement.textContent = timeLeft;
   }
 
@@ -112,15 +110,14 @@ function checkAnswer(selectedAnswer) {
   }
 }
 
-function endQuiz() {
-  clearInterval(timerInterval); // Stop the timer
 
+function endQuiz() {
+  clearInterval(timerInterval);
   questionScreen.style.display = "none";
   endScreen.style.display = "block";
 
-  // Calculate final score 
-  const finalScore = timeLeft;
-  finalScoreElement.textContent = finalScore;
+  // Update the final score element to display the score
+  finalScoreElement.textContent = score;
 }
 
 function submitScore() {
