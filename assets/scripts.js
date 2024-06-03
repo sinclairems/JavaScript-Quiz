@@ -118,3 +118,20 @@ function endQuiz() {
   const finalScore = timeLeft;
   finalScoreElement.textContent = finalScore;
 }
+
+function submitScore() {
+  const initials = initialsInput.value.toUpperCase(); // Get and format initials
+  const newScore = { initials, score: finalScore };
+
+  // Retrieve existing scores from localStorage or start with an empty array
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+  // Add the new score
+  highScores.push(newScore);
+
+  // Sort the high scores 
+  highScores.sort((a, b) => b.score - a.score);
+
+  // Save the updated high scores back to localStorage
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+}
