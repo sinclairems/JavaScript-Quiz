@@ -2,52 +2,32 @@
 const questions = [
     {
         question: "What is the biggest planet in our solar system?",
-        answers: [
-            { text: "Jupiter", correct: true },
-            { text: "Earth", correct: false },
-            { text: "Uranus", correct: false },
-            { text: "Saturn", correct: false }
-        ]
+        choices: ["Earth", "Uranus", "Saturn"],
+        answer: "Jupiter"
     },
 
     {
         question: "Which constellation is known as The Water Bearer?", 
-        answers: [
-            { text: "Orion", correct: false },
-            { text: "Gemini", correct: false },
-            { text: "Aquarius", correct: true },
-            { text: "The Little Dipper", correct: false }
-        ]
+        choices: ["Orion", "Gemini", "The Little Dipper"],
+        answer: "Aquarius"
     },
 
     {
         question: "How long does Pluto take to orbit the sun?", 
-        answers: [
-            { text: "248 days", correct: false },
-            { text: "248 years", correct: true },
-            { text: "248 months", correct: false },
-            { text: "248 weeks", correct: false }
-        ]
+        choices: ["248 days", "248 months", "248 weeks"],
+        answer: "248 years"
     },
 
     {
         question: "How far away is our moon?", 
-        answers: [
-            { text: "352,550 miles", correct: false },
-            { text: "40,850 miles", correct: false },
-            { text: "1,001,250 miles", correct: false },
-            { text: "238,855 miles", correct: true }
-        ]
+        choices: ["352,550 miles", "40,850 miles", "1,001,250 miles"],
+        answer: "238,855 miles"
     },
 
     {
         question: "Is there life on Mars?", 
-        answers: [
-            { text: "It's complicated", correct: false },
-            { text: "There is no proof to date", correct: true },
-            { text: "Definitely 👽", correct: false },
-            { text: "Not yet", correct: false }
-        ]
+        choices: ["It's complicated", "Definitely 👽", "Not yet"],
+        answer: "There is no proof to date"
     },
 ];
 
