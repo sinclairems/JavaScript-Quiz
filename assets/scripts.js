@@ -59,6 +59,19 @@ function startQuiz() {
   startTimer();
 }
 
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timeLeftElement.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      endQuiz();
+    }
+  }, 1000); // Update every 1000 milliseconds (1 second)
+}
+
+
 function showQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
@@ -75,8 +88,26 @@ function showQuestion() {
 
 
 function checkAnswer(selectedAnswer) {
-  // ... check if answer is correct, deduct time if wrong
+  const currentQuestion = questions[currentQuestionIndex];
+
+  if (selectedAnswer === currentQuestion.answer) {
+    // Correct answer
+  } else {
+    // Incorrect answer
+    timeLeft -= 10; // Subtract time 
+    if (timeLeft < 0) timeLeft = 0; // Prevent negative time
+    timeLeftElement.textContent = timeLeft;
+  }
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    endQuiz();
+  }
 }
+
 
 function endQuiz() {
   // ... show endScreen, stop timer, display score
