@@ -1,8 +1,10 @@
 body {
-  font-family: sans-serif;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
+
 header {
   text-align: center;
+
 }
 #timer {
   font-size: 1.2em;
@@ -13,4 +15,19 @@ header {
 ul {
   list-style: none;
   padding: 0;
+  background-color: #4CAF50;
+  color: white;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
