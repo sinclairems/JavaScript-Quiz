@@ -60,8 +60,19 @@ function startQuiz() {
 }
 
 function showQuestion() {
-  // ... display current question and choices
+  const currentQuestion = questions[currentQuestionIndex];
+  questionText.textContent = currentQuestion.question;
+
+  choicesList.innerHTML = ""; // Clear previous choices
+
+  currentQuestion.choices.forEach((choice) => {
+    const li = document.createElement("li");
+    li.textContent = choice;
+    li.addEventListener("click", () => checkAnswer(choice)); // Check when clicked
+    choicesList.appendChild(li);
+  });
 }
+
 
 function checkAnswer(selectedAnswer) {
   // ... check if answer is correct, deduct time if wrong
