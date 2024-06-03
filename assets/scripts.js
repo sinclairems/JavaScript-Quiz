@@ -108,7 +108,13 @@ function checkAnswer(selectedAnswer) {
   }
 }
 
-
 function endQuiz() {
-  // ... show endScreen, stop timer, display score
+  clearInterval(timerInterval); // Stop the timer
+
+  questionScreen.style.display = "none";
+  endScreen.style.display = "block";
+
+  // Calculate final score 
+  const finalScore = timeLeft;
+  finalScoreElement.textContent = finalScore;
 }
