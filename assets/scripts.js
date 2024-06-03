@@ -34,6 +34,7 @@ const questions = [
 let currentQuestionIndex = 0;
 let timeLeft = 60;
 let timerInterval;
+let score = 0;
 
 // Get references to the HTML elements 
 const startButton = document.getElementById("startButton");
@@ -76,13 +77,16 @@ function showQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
 
-  choicesList.innerHTML = ""; // Clear previous choices
+  const choices = currentQuestion.choices;
+  const answerIndex = choices.indexOf(currentQuestion.answer);
 
-  currentQuestion.choices.forEach((choice) => {
-    const li = document.createElement("li");
-    li.textContent = choice;
-    li.addEventListener("click", () => checkAnswer(choice)); // Check when clicked
-    choicesList.appendChild(li);
+  // Shuffle choices
+  choices.sort(() => Math.random() - 0.5);
+
+  const choiceButtons = document.querySelectorAll(".choice-btn");
+  choiceButtons.forEach((button, index) => {
+    button.textContent = choices[index];
+    button.onclick = () => checkAnswer(choices[index], answerIndex === index);
   });
 }
 
